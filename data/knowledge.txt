@@ -1,0 +1,23 @@
+GenAI Knowledge Assistant Overview
+
+The GenAI Knowledge Assistant is a Retrieval-Augmented Generation (RAG) based system designed to answer user questions using external documents. Instead of relying only on a language model’s internal knowledge, the system retrieves relevant information from a document store and uses it to generate grounded responses.
+
+System Architecture
+
+The system consists of four main components. The first component is the API layer built using FastAPI, which exposes REST endpoints for user interaction. The second component is the embedding layer, where documents and user queries are converted into vector representations using a sentence transformer model. The third component is the vector store, which uses FAISS to perform efficient similarity search. The final component is the response generation layer, where the retrieved context is passed to a language model to generate the final answer.
+
+Why RAG is Used
+
+RAG is used to reduce hallucinations and improve factual accuracy. By retrieving relevant document chunks and grounding the language model response in that data, the system ensures that answers are context-aware and traceable to source documents. This approach is preferred over fine-tuning for most enterprise use cases because it allows knowledge updates without retraining models.
+
+Technology Stack
+
+The application is developed using Python and FastAPI. Sentence-transformers are used to generate embeddings, and FAISS is used as the vector database for similarity search. The service is containerized using Docker to ensure consistent deployment across environments. Infrastructure provisioning can be managed using Terraform, making the system cloud-ready for AWS or Azure deployment.
+
+Deployment Strategy
+
+In a production environment, the application can be deployed as a containerized service on AWS ECS or Azure Container Apps. An API Gateway can be used to expose the service securely, and logs can be monitored using cloud-native monitoring tools such as AWS CloudWatch or Azure Monitor.
+
+Future Improvements
+
+Future enhancements include adding authentication and authorization, improving document chunking strategies, caching frequent queries, integrating multi-agent validation, and implementing monitoring for latency, cost, and response quality.
