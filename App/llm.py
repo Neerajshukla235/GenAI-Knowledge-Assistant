@@ -1,4 +1,4 @@
-from App.hf_client import generate_with_llm
+from .hf_client import generate_with_llm
 import re
 
 def clean_sentence_boundary(text: str, max_len=700) -> str:
